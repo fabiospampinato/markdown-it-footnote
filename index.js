@@ -30,7 +30,7 @@ function render_footnote_ref(tokens, idx, options, env, slf) {
   var id      = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
   var caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
   var refid   = id;
-  var scope = evn.footnotesScope || '';
+  var scope = env.footnotesScope || '';
 
   if (tokens[idx].meta.subId > 0) {
     refid += ':' + tokens[idx].meta.subId;
@@ -51,7 +51,7 @@ function render_footnote_block_close() {
 
 function render_footnote_open(tokens, idx, options, env, slf) {
   var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
-  var scope = evn.footnotesScope || '';
+  var scope = env.footnotesScope || '';
 
   if (tokens[idx].meta.subId > 0) {
     id += ':' + tokens[idx].meta.subId;
