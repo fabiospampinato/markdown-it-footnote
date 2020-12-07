@@ -30,12 +30,13 @@ function render_footnote_ref(tokens, idx, options, env, slf) {
   var id      = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
   var caption = slf.rules.footnote_caption(tokens, idx, options, env, slf);
   var refid   = id;
+  var scope = evn.footnotesScope || '';
 
   if (tokens[idx].meta.subId > 0) {
     refid += ':' + tokens[idx].meta.subId;
   }
 
-  return '<sup class="footnote-ref"><a href="#fn' + id + '" id="fnref' + refid + '">' + caption + '</a></sup>';
+  return '<sup class="footnote-ref"><a href="#fn' + scope + id + '" id="fnref' + refid + '">' + caption + '</a></sup>';
 }
 
 function render_footnote_block_open(tokens, idx, options) {
@@ -50,12 +51,13 @@ function render_footnote_block_close() {
 
 function render_footnote_open(tokens, idx, options, env, slf) {
   var id = slf.rules.footnote_anchor_name(tokens, idx, options, env, slf);
+  var scope = evn.footnotesScope || '';
 
   if (tokens[idx].meta.subId > 0) {
     id += ':' + tokens[idx].meta.subId;
   }
 
-  return '<li id="fn' + id + '" class="footnote-item">';
+  return '<li id="fn' + scope + id + '" class="footnote-item">';
 }
 
 function render_footnote_close() {
